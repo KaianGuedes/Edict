@@ -1,32 +1,74 @@
-# ================================================================= #
-#                      PluginRules - Configuração                   #
-# ================================================================= #
-# Desenvolvido por dev.war
+# PluginRules 0.2
 #
-# Este arquivo controla as leis físicas e mecânicas do seu servidor.
-# Todas as alterações podem ser feitas via comando: /pluginrules set <regra> <valor>
-#
-# ================================================================= #
+# Every rule has parameters. A value is resolved per parameter in this order:
+#   1. worlds.<world name>.<rule>.<parameter>
+#   2. environments.<overworld|nether|the_end>.<rule>.<parameter>
+#   3. rules.<rule>.<parameter>   (global default)
+# You can edit this file, use /pluginrules set, or use the GUI (/pluginrules). /pluginrules reload re-reads it.
+
+config-version: 2
+
+# Language of messages and the GUI: auto (client language, else the server language), en_US or pt_BR.
+language: auto
 
 rules:
-  # --- PROTEÇÃO CONTRA ENTIDADES ---
+  # Stops explosions from breaking blocks.
+  creeper_block_damage:
+    # true  = vanilla (creepers break blocks), false = the explosion hurts but the terrain stays intact.
+    enabled: true
+    # When enabled is false, also protect blocks from other explosions (TNT, ghasts, withers, beds, anchors...).
+    also-other-explosions: false
 
-  # Define se a explosão de um Creeper pode destruir blocos do cenário.
-  # true  -> O Creeper quebra blocos normalmente (padrão do Vanilla).
-  # false -> A explosão ocorre e dá dano, mas o cenário fica intacto.
-  creeper_block_damage: true
+  # Controls whether endermen can pick up blocks.
+  enderman_block_theft:
+    # true  = vanilla, false = endermen cannot take blocks.
+    enabled: true
+    # false = endermen also cannot place the block they carry.
+    allow-place: true
 
-  # Define se o Enderman pode roubar blocos do chão (Grama, Areia, etc.).
-  # true  -> Endermans podem retirar e carregar blocos.
-  # false -> Impede a subtração de blocos por Endermans (Proteção de Terreno).
-  enderman_block_theft: true
+  # Controls travel through End portals.
+  enter_end_portal:
+    # true  = vanilla, false = the teleport is cancelled (the player never changes dimension).
+    enabled: true
+    # Message sent to the player when the portal is blocked. Empty = the translated default. Supports & colors.
+    message: ""
 
-  # Define se os jogadores podem atravessar o portal do The End.
-  # true  -> O jogador entra no The End normalmente (padrão).
-  # false -> Cancela o teleporte. Como o jogador não muda de dimensão, a conquista "The End?" não é ativada.
-  enter_end_portal: true
+  # ONLY THE END: the End void leads to the Overworld sky.
+  # With this on, falling out of the End never kills. Below the-end-y the player is sent to the matching
+  # overworld (see corresponding-overworld below) at overworld-y.
+  safe_void_fall:
+    enabled: false
+    # Y level in the End that triggers the teleport.
+    the-end-y: -200
+    # Arrival Y in the overworld. It is clamped to that world's build height minus max-height-margin,
+    # and a warning is logged when that happens.
+    overworld-y: 1624
+    max-height-margin: 8
+    # true = vanilla fall damage applies after arrival, false = no fall damage after arriving.
+    fall-damage: true
+    # true = keep the falling speed after the teleport, false = start the fall from rest.
+    keep-velocity: false
 
-  # Define se o jogador sobrevive ao cair no void.
-  # true  -> Jogador não toma dano de void. Ao chegar na camada -200, é teleportado para o Overworld no Y: 1624.
-  # false -> O void funciona normalmente (causa dano e mata o jogador).
-  safe_void_fall: false
+# Overrides per environment group. Example:
+#   environments:
+#     nether:
+#       creeper_block_damage:
+#         enabled: false
+environments:
+  overworld: {}
+  nether: {}
+  the_end: {}
+
+# Overrides per world (by world name). Example:
+#   worlds:
+#     creative_world:
+#       enter_end_portal:
+#         enabled: false
+worlds: {}
+
+# Which overworld an End world sends players to (safe_void_fall).
+# Without an entry, the standard naming is used: world_the_end -> world, <name>_the_end -> <name>.
+# If nothing matches, the main world is used and a warning is logged. Example:
+#   corresponding-overworld:
+#     my_end: my_overworld
+corresponding-overworld: {}

@@ -1,0 +1,184 @@
+# PluginRules messages (English). Colors use & codes. {placeholders} are filled in by the plugin.
+log:
+  enabled: "PluginRules enabled successfully! (platform: {platform})"
+  disabled: "PluginRules disabled."
+err:
+  bool: "&cThe value must be true or false."
+  number: "&cThe value must be a whole number."
+  range: "&cThe value must be between {min} and {max}."
+value:
+  "on": "&aON"
+  "off": "&cOFF"
+  empty: "&8(empty)"
+source:
+  default: "&8[default]"
+  own: "&8[set here]"
+  inherited: "&8[from {scope}&8]"
+scope:
+  global: "Global"
+  overworld: "Overworld"
+  nether: "Nether"
+  the_end: "The End"
+  world: "World {name}"
+cmd:
+  no-permission: "&cYou do not have permission to use this command."
+  players-only: "&cOnly players can open the GUI."
+  reload: "&aConfiguration and language files reloaded."
+  bad-scope: "&cUnknown scope '{scope}'. Use global, overworld, nether, the_end or world:<name>."
+  rule-not-found: "&cRule '{rule}' not found."
+  usage:
+    get: "&eUsage: /pluginrules get <rule> [parameter] [scope]"
+    set: "&eUsage: /pluginrules set <rule> [parameter] <value> [scope]"
+    reset: "&eUsage: /pluginrules reset <rule> [parameter] [scope]"
+  help:
+    header: "&e--- PluginRules ---"
+    lines:
+      - "&7/{label} &8- &fopen the GUI (players)"
+      - "&7/{label} list [scope] &8- &fshow all rules"
+      - "&7/{label} get <rule> [parameter] [scope] &8- &fshow a value"
+      - "&7/{label} set <rule> [parameter] <value> [scope] &8- &fchange a value"
+      - "&7/{label} reset <rule> [parameter] [scope] &8- &fremove an override"
+      - "&7/{label} reload &8- &fre-read config and language files"
+      - "&7Scopes: &fglobal, overworld, nether, the_end, world:<name>"
+  list:
+    header: "&a--- Current rules ({scope}&a) ---"
+    rule: "&e{rule}"
+    param: "&7  {param}: {value} {source}"
+  get: "&7{rule}.{param} = {value} &7in {scope} {source}"
+  set:
+    ok: "&aRule {rule} ({param}) set to {value}&a in {scope}&a."
+  reset:
+    ok: "&aRule {rule} ({param}) reset in {scope}&a."
+prompt:
+  ask: "&eType the new value for &f{param}&e in chat, or type &fcancel&e."
+  cancelled: "&7Cancelled."
+  saved: "&a{param} set to {value}."
+rule:
+  creeper_block_damage:
+    name: "&aCreeper block damage"
+    desc:
+      - "&7Whether creeper explosions can"
+      - "&7destroy blocks."
+      - "&7Off: the explosion hurts but the"
+      - "&7terrain stays intact."
+  enderman_block_theft:
+    name: "&aEnderman block theft"
+    desc:
+      - "&7Whether endermen can pick up"
+      - "&7blocks (grass, sand, ...)."
+  enter_end_portal:
+    name: "&aEnter End portal"
+    desc:
+      - "&7Whether players can travel through"
+      - "&7End portals. Off: the teleport is"
+      - "&7cancelled, so the 'The End?'"
+      - "&7advancement is never triggered."
+    blocked: "&cThe End portal is disabled here."
+  safe_void_fall:
+    name: "&aSafe void fall"
+    desc:
+      - "&7ONLY THE END: the End void leads to"
+      - "&7the Overworld sky. Falling out of the"
+      - "&7End never kills; the player lands in"
+      - "&7the matching overworld."
+param:
+  enabled:
+    name: "&aEnabled"
+    desc:
+      - "&7Turns the rule on or off."
+  creeper_block_damage:
+    also-other-explosions:
+      name: "&aAlso other explosions"
+      desc:
+        - "&7When the rule is off, also protect"
+        - "&7blocks from TNT, ghasts, beds, etc."
+  enderman_block_theft:
+    allow-place:
+      name: "&aAllow placing"
+      desc:
+        - "&7Off: endermen cannot place the"
+        - "&7block they carry either."
+  enter_end_portal:
+    message:
+      name: "&aBlocked message"
+      desc:
+        - "&7Sent when the portal is blocked."
+        - "&7Empty uses the default text."
+  safe_void_fall:
+    the-end-y:
+      name: "&aTrigger Y (The End)"
+      desc:
+        - "&7Y level in the End that sends the"
+        - "&7player to the overworld."
+    overworld-y:
+      name: "&aArrival Y (overworld)"
+      desc:
+        - "&7Y level of arrival. Clamped to the"
+        - "&7destination's build height."
+    max-height-margin:
+      name: "&aHeight margin"
+      desc:
+        - "&7Blocks kept free below the build"
+        - "&7limit when the arrival Y is clamped."
+    fall-damage:
+      name: "&aFall damage after arrival"
+      desc:
+        - "&7On: vanilla fall damage applies."
+        - "&7Off: no fall damage after arriving."
+    keep-velocity:
+      name: "&aKeep velocity"
+      desc:
+        - "&7On: keep the falling speed after"
+        - "&7the teleport. Off: start from rest."
+gui:
+  title:
+    main: "PluginRules"
+    rule: "PluginRules: {rule}"
+    scope: "PluginRules: choose scope"
+  close: "&cClose"
+  back: "&eBack"
+  current: "&7{scope}&7: {value}"
+  default: "&7Default: {value}"
+  range: "&7Range: &f{min} &7to &f{max}"
+  per-scope: "&7Enabled by scope:"
+  per-scope.line: "&8  {scope}&8: {value}"
+  override:
+    "yes": "&7Override in this scope: &ayes"
+    "no": "&7Override in this scope: &8no (inherited)"
+  rule:
+    controls:
+      - "&eLeft click: &fopen settings"
+      - "&eRight click: &ftoggle enabled"
+  controls:
+    bool:
+      - "&eClick: &ftoggle"
+    int:
+      - "&eLeft/Right click: &f+/- {step}"
+      - "&eShift + click: &f+/- {big}"
+      - "&eQ (drop): &ftype an exact value"
+    string:
+      - "&eLeft click: &ftype a value in chat"
+      - "&eRight click: &fclear"
+    reset:
+      - "&eMiddle click: &fremove override (inherit)"
+    reset-global:
+      - "&eMiddle click: &freset to default"
+  scope:
+    button: "&bScope"
+    current: "&7Editing: &f{scope}"
+    lore:
+      - "&7Order: world, then environment,"
+      - "&7then global."
+      - "&eClick to change"
+    header: "&bScope selector"
+    header.lore:
+      - "&7Choose where your changes apply."
+    select: "&eClick to select"
+    selected: "&aSelected"
+    entry:
+      global:
+        - "&7The default for every world."
+      environment:
+        - "&7All worlds of this dimension type."
+      world:
+        - "&7Only this world."
