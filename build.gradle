@@ -1,48 +1,54 @@
 plugins {
     id 'java'
-    id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
 group = 'dev.war'
-version = '0.1'
+version = '0.2'
 
 repositories {
     mavenCentral()
+    maven {
+        name = "spigot-repo"
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
     maven {
         name = "papermc-repo"
         url = "https://repo.papermc.io/repository/maven-public/"
     }
 }
 
+// Spigot API is the baseline; Paper-only code lives in its own source set and is only loaded when Paper is detected.
+sourceSets {
+    paper {
+        java.srcDir 'src/paper/java'
+        compileClasspath += sourceSets.main.output + configurations.compileClasspath
+    }
+}
+
+configurations {
+    paperCompileOnly.extendsFrom compileOnly
+}
+
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
+    paperCompileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
 }
 
-tasks {
-    runServer {
-        // Configure the Minecraft version for our task.
-        // This is the only required configuration besides applying the plugin.
-        // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("1.21")
-    }
-}
-
-def targetJavaVersion = 21
 java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
+    // 1.20.1 servers run Java 17, so everything is compiled for 17
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    disableAutoTargetJvm()
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+    options.release.set(17)
+}
 
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        options.release.set(targetJavaVersion)
-    }
+// the paper classes must not see the spigot-api jar first (paper-api already contains it)
+tasks.named('compilePaperJava') {
+    classpath = sourceSets.paper.output.classesDirs.plus(sourceSets.main.output).plus(configurations.paperCompileClasspath)
 }
 
 processResources {
@@ -51,5 +57,14 @@ processResources {
     filteringCharset 'UTF-8'
     filesMatching('plugin.yml') {
         expand props
+    }
+}
+
+jar {
+    archiveBaseName = 'PluginRules'
+    from sourceSets.paper.output
+    // Paper 1.20.5+ would remap a plain Spigot plugin; this one uses no obfuscated names, so it opts out
+    manifest {
+        attributes('paperweight-mappings-namespace': 'mojang')
     }
 }

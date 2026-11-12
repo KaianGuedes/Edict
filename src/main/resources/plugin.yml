@@ -1,4 +1,16 @@
 name: PluginRules
-version: '0.1'
+version: '${version}'
 main: dev.war.pluginRules.PluginRules
-api-version: '1.21'
+api-version: '1.20'
+folia-supported: true
+description: Per-world and per-dimension gameplay rules with a chest GUI.
+authors: [KaianGuedes]
+commands:
+  pluginrules:
+    description: Manage the server rules (GUI, list, get, set, reset, reload).
+    usage: /<command> [gui|list|get|set|reset|reload|help]
+    aliases: [prules, pr]
+permissions:
+  pluginrules.admin:
+    description: Allows using and changing PluginRules.
+    default: op

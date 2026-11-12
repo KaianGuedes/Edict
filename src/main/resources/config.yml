@@ -1,0 +1,32 @@
+# ================================================================= #
+#                      PluginRules - Configuração                   #
+# ================================================================= #
+# Desenvolvido por dev.war
+#
+# Este arquivo controla as leis físicas e mecânicas do seu servidor.
+# Todas as alterações podem ser feitas via comando: /pluginrules set <regra> <valor>
+#
+# ================================================================= #
+
+rules:
+  # --- PROTEÇÃO CONTRA ENTIDADES ---
+
+  # Define se a explosão de um Creeper pode destruir blocos do cenário.
+  # true  -> O Creeper quebra blocos normalmente (padrão do Vanilla).
+  # false -> A explosão ocorre e dá dano, mas o cenário fica intacto.
+  creeper_block_damage: true
+
+  # Define se o Enderman pode roubar blocos do chão (Grama, Areia, etc.).
+  # true  -> Endermans podem retirar e carregar blocos.
+  # false -> Impede a subtração de blocos por Endermans (Proteção de Terreno).
+  enderman_block_theft: true
+
+  # Define se os jogadores podem atravessar o portal do The End.
+  # true  -> O jogador entra no The End normalmente (padrão).
+  # false -> Cancela o teleporte. Como o jogador não muda de dimensão, a conquista "The End?" não é ativada.
+  enter_end_portal: true
+
+  # Define se o jogador sobrevive ao cair no void.
+  # true  -> Jogador não toma dano de void. Ao chegar na camada -200, é teleportado para o Overworld no Y: 1624.
+  # false -> O void funciona normalmente (causa dano e mata o jogador).
+  safe_void_fall: false
