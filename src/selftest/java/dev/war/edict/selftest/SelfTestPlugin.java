@@ -13,7 +13,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
-import org.bukkit.WorldType;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -383,7 +382,7 @@ public final class SelfTestPlugin extends JavaPlugin {
     private World create(String name, World.Environment env) {
         World w = Bukkit.getWorld(name);
         if (w != null) return w;
-        return new WorldCreator(name).environment(env).type(WorldType.FLAT).generateStructures(false).createWorld();
+        return new WorldCreator(name).environment(env).generateStructures(false).createWorld();
     }
 
     private void move(FakePlayer p, double y) {
