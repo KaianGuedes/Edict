@@ -1,0 +1,4 @@
+name: PluginRules
+version: '0.1'
+main: dev.war.pluginRules.PluginRules
+api-version: '1.21'
