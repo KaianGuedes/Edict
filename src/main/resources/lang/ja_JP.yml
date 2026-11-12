@@ -1,0 +1,185 @@
+# Edict のメッセージ (日本語)。色は & コードを使います。{変数} はプラグインが埋めます。
+log:
+  enabled: "Edict を有効にしました。(プラットフォーム: {platform})"
+  disabled: "Edict を無効にしました。"
+err:
+  bool: "&c値は true か false にしてください。"
+  number: "&c値は整数にしてください。"
+  range: "&c値は {min} から {max} の間にしてください。"
+value:
+  "on": "&aオン"
+  "off": "&cオフ"
+  empty: "&8(空)"
+source:
+  default: "&8[デフォルト]"
+  own: "&8[ここで設定]"
+  inherited: "&8[{scope}&8から継承]"
+scope:
+  global: "全体"
+  overworld: "オーバーワールド"
+  nether: "ネザー"
+  the_end: "ジ・エンド"
+  world: "ワールド {name}"
+cmd:
+  no-permission: "&cこのコマンドを使う権限がありません。"
+  players-only: "&cGUI を開けるのはプレイヤーだけです。"
+  reload: "&a設定と言語ファイルを再読み込みしました。"
+  bad-scope: "&c不明な範囲 '{scope}' です。global、overworld、nether、the_end、world:<名前> のいずれかを使ってください。"
+  rule-not-found: "&cルール '{rule}' が見つかりません。"
+  usage:
+    get: "&e使い方: /edict get <ルール> [パラメータ] [範囲]"
+    set: "&e使い方: /edict set <ルール> [パラメータ] <値> [範囲]"
+    reset: "&e使い方: /edict reset <ルール> [パラメータ] [範囲]"
+  help:
+    header: "&e--- Edict ---"
+    lines:
+      - "&7/{label} &8- &fGUI を開く (プレイヤー)"
+      - "&7/{label} list [範囲] &8- &f全ルールを表示"
+      - "&7/{label} get <ルール> [パラメータ] [範囲] &8- &f値を表示"
+      - "&7/{label} set <ルール> [パラメータ] <値> [範囲] &8- &f値を変更"
+      - "&7/{label} reset <ルール> [パラメータ] [範囲] &8- &f上書きを削除"
+      - "&7/{label} reload &8- &f設定と言語ファイルを再読み込み"
+      - "&7範囲: &fglobal, overworld, nether, the_end, world:<名前>"
+  list:
+    header: "&a--- 現在のルール ({scope}&a) ---"
+    rule: "&e{rule}"
+    param: "&7  {param}: {value} {source}"
+  get: "&7{rule}.{param} = {value} &7({scope}) {source}"
+  set:
+    ok: "&aルール {rule} ({param}) を {scope}&a で {value}&a に設定しました。"
+  reset:
+    ok: "&aルール {rule} ({param}) を {scope}&a でリセットしました。"
+prompt:
+  ask: "&e&f{param}&e の新しい値をチャットに入力してください。やめる場合は &fキャンセル&e と入力します。"
+  cancelled: "&7キャンセルしました。"
+  cancel-word: "キャンセル"
+  saved: "&a{param} を {value} に設定しました。"
+rule:
+  creeper_block_damage:
+    name: "&aクリーパーのブロック破壊"
+    desc:
+      - "&7クリーパーの爆発でブロックが"
+      - "&7壊れるかどうかを決めます。"
+      - "&7オフ: 爆発でダメージは受けますが"
+      - "&7地形は壊れません。"
+  enderman_block_theft:
+    name: "&aエンダーマンのブロック持ち去り"
+    desc:
+      - "&7エンダーマンがブロック (草ブロックや"
+      - "&7砂など) を持ち上げられるか決めます。"
+  enter_end_portal:
+    name: "&aエンドポータルへの進入"
+    desc:
+      - "&7プレイヤーがエンドポータルで移動"
+      - "&7できるか決めます。オフ: テレポートは"
+      - "&7キャンセルされ、進捗「ジ・エンド?」も"
+      - "&7達成されません。"
+    blocked: "&cここではエンドポータルが無効です。"
+  safe_void_fall:
+    name: "&a安全な奈落落下"
+    desc:
+      - "&7ジ・エンド専用: エンドの奈落から"
+      - "&7オーバーワールドの空へ出ます。落下で"
+      - "&7死なず、対応するオーバーワールドに"
+      - "&7到着します。"
+param:
+  enabled:
+    name: "&a有効"
+    desc:
+      - "&7ルールのオンとオフを切り替えます。"
+  creeper_block_damage:
+    also-other-explosions:
+      name: "&aほかの爆発も対象"
+      desc:
+        - "&7ルールがオフのとき、TNT、ガスト、"
+        - "&7ベッドなどの爆発からも守ります。"
+  enderman_block_theft:
+    allow-place:
+      name: "&a設置を許可"
+      desc:
+        - "&7オフ: エンダーマンは持っている"
+        - "&7ブロックを置くこともできません。"
+  enter_end_portal:
+    message:
+      name: "&a拒否メッセージ"
+      desc:
+        - "&7ポータルが使えないときに送ります。"
+        - "&7空欄ならデフォルトの文を使います。"
+  safe_void_fall:
+    the-end-y:
+      name: "&a発動Y (ジ・エンド)"
+      desc:
+        - "&7プレイヤーをオーバーワールドへ送る"
+        - "&7エンドの高さです。"
+    overworld-y:
+      name: "&a到着Y (オーバーワールド)"
+      desc:
+        - "&7到着する高さ。行き先の建築可能な"
+        - "&7高さに収まるよう制限されます。"
+    max-height-margin:
+      name: "&a高さの余白"
+      desc:
+        - "&7Yを制限するとき、建築限界の下に"
+        - "&7空けておくブロック数です。"
+    fall-damage:
+      name: "&a到着後の落下ダメージ"
+      desc:
+        - "&7オン: 通常の落下ダメージを受けます。"
+        - "&7オフ: 到着後は落下ダメージなし。"
+    keep-velocity:
+      name: "&a落下速度を維持"
+      desc:
+        - "&7オン: テレポート後も落下速度を保ちます。"
+        - "&7オフ: 静止状態から落ち始めます。"
+gui:
+  title:
+    main: "Edict"
+    rule: "Edict: {rule}"
+    scope: "Edict: 範囲を選択"
+  close: "&c閉じる"
+  back: "&e戻る"
+  current: "&7{scope}&7: {value}"
+  default: "&7デフォルト: {value}"
+  range: "&7範囲: &f{min} &7から &f{max}"
+  per-scope: "&7範囲ごとの有効状態:"
+  per-scope-line: "&8  {scope}&8: {value}"
+  override:
+    "yes": "&7この範囲での上書き: &aあり"
+    "no": "&7この範囲での上書き: &8なし (継承)"
+  rule:
+    controls:
+      - "&e左クリック: &f設定を開く"
+      - "&e右クリック: &f有効を切り替え"
+  controls:
+    bool:
+      - "&eクリック: &f切り替え"
+    int:
+      - "&e左/右クリック: &f+/- {step}"
+      - "&eShift + クリック: &f+/- {big}"
+      - "&eQ (ドロップ): &f値を直接入力"
+    string:
+      - "&e左クリック: &fチャットで値を入力"
+      - "&e右クリック: &fクリア"
+    reset:
+      - "&e中クリック: &f上書きを削除 (継承)"
+    reset-global:
+      - "&e中クリック: &fデフォルトに戻す"
+  scope:
+    button: "&b範囲"
+    current: "&7編集中: &f{scope}"
+    lore:
+      - "&7優先順: ワールド、ディメンション、"
+      - "&7全体の順です。"
+      - "&eクリックで変更"
+    header: "&b範囲の選択"
+    header-lore:
+      - "&7変更を適用する場所を選びます。"
+    select: "&eクリックで選択"
+    selected: "&a選択中"
+    entry:
+      global:
+        - "&7すべてのワールドのデフォルト。"
+      environment:
+        - "&7このディメンション種別のすべてのワールド。"
+      world:
+        - "&7このワールドのみ。"

@@ -1,4 +1,4 @@
-# Edict 0.2
+# Edict 0.1.0
 #
 # Every rule has parameters. A value is resolved per parameter in this order:
 #   1. worlds.<world name>.<rule>.<parameter>
@@ -8,7 +8,10 @@
 
 config-version: 2
 
-# Language of messages and the GUI: auto (client language, else the server language), en_US or pt_BR.
+# Language of messages and the GUI: auto (client language, else the server language) or a code:
+#   en_US, pt_BR, pt_PT, es_ES, es_MX, fr_FR, de_DE, it_IT, ja_JP, ko_KR, zh_CN, zh_TW, ru_RU, pl_PL, tr_TR, uk_UA
+# With auto, a client language without its own file falls back by prefix (es_AR to es_ES), then to the server
+# language, then to en_US.
 language: auto
 
 rules:

@@ -1,0 +1,185 @@
+# Edict 메시지 (한국어). 색상은 & 코드를 사용합니다. {변수}는 플러그인이 채웁니다.
+log:
+  enabled: "Edict가 활성화되었습니다. (플랫폼: {platform})"
+  disabled: "Edict가 비활성화되었습니다."
+err:
+  bool: "&c값은 true 또는 false여야 합니다."
+  number: "&c값은 정수여야 합니다."
+  range: "&c값은 {min}에서 {max} 사이여야 합니다."
+value:
+  "on": "&a켜짐"
+  "off": "&c꺼짐"
+  empty: "&8(비어 있음)"
+source:
+  default: "&8[기본값]"
+  own: "&8[여기서 설정됨]"
+  inherited: "&8[{scope}&8에서 상속]"
+scope:
+  global: "전체"
+  overworld: "오버월드"
+  nether: "네더"
+  the_end: "디 엔드"
+  world: "월드 {name}"
+cmd:
+  no-permission: "&c이 명령어를 사용할 권한이 없습니다."
+  players-only: "&c플레이어만 GUI를 열 수 있습니다."
+  reload: "&a설정과 언어 파일을 다시 불러왔습니다."
+  bad-scope: "&c알 수 없는 범위 '{scope}'입니다. global, overworld, nether, the_end, world:<이름> 중 하나를 사용하세요."
+  rule-not-found: "&c규칙 '{rule}'을(를) 찾을 수 없습니다."
+  usage:
+    get: "&e사용법: /edict get <규칙> [매개변수] [범위]"
+    set: "&e사용법: /edict set <규칙> [매개변수] <값> [범위]"
+    reset: "&e사용법: /edict reset <규칙> [매개변수] [범위]"
+  help:
+    header: "&e--- Edict ---"
+    lines:
+      - "&7/{label} &8- &fGUI 열기 (플레이어)"
+      - "&7/{label} list [범위] &8- &f모든 규칙 표시"
+      - "&7/{label} get <규칙> [매개변수] [범위] &8- &f값 표시"
+      - "&7/{label} set <규칙> [매개변수] <값> [범위] &8- &f값 변경"
+      - "&7/{label} reset <규칙> [매개변수] [범위] &8- &f재정의 제거"
+      - "&7/{label} reload &8- &f설정과 언어 파일 다시 불러오기"
+      - "&7범위: &fglobal, overworld, nether, the_end, world:<이름>"
+  list:
+    header: "&a--- 현재 규칙 ({scope}&a) ---"
+    rule: "&e{rule}"
+    param: "&7  {param}: {value} {source}"
+  get: "&7{rule}.{param} = {value} &7({scope}) {source}"
+  set:
+    ok: "&a규칙 {rule} ({param})을(를) {scope}&a에서 {value}&a(으)로 설정했습니다."
+  reset:
+    ok: "&a규칙 {rule} ({param})을(를) {scope}&a에서 초기화했습니다."
+prompt:
+  ask: "&e&f{param}&e의 새 값을 채팅에 입력하세요. 취소하려면 &f취소&e를 입력하세요."
+  cancelled: "&7취소되었습니다."
+  cancel-word: "취소"
+  saved: "&a{param}을(를) {value}(으)로 설정했습니다."
+rule:
+  creeper_block_damage:
+    name: "&a크리퍼 블록 파괴"
+    desc:
+      - "&7크리퍼의 폭발로 블록이"
+      - "&7파괴되는지 정합니다."
+      - "&7꺼짐: 폭발 피해는 입지만"
+      - "&7지형은 그대로 유지됩니다."
+  enderman_block_theft:
+    name: "&a엔더맨 블록 훔치기"
+    desc:
+      - "&7엔더맨이 블록(잔디, 모래 등)을"
+      - "&7집어 갈 수 있는지 정합니다."
+  enter_end_portal:
+    name: "&a엔드 차원문 진입"
+    desc:
+      - "&7플레이어가 엔드 차원문으로 이동할"
+      - "&7수 있는지 정합니다. 꺼짐: 순간이동이"
+      - "&7취소되어 발전 과제 '디 엔드?'도"
+      - "&7달성되지 않습니다."
+    blocked: "&c이곳에서는 엔드 차원문이 비활성화되어 있습니다."
+  safe_void_fall:
+    name: "&a안전한 공허 낙하"
+    desc:
+      - "&7디 엔드 전용: 엔드의 공허에서 떨어지면"
+      - "&7오버월드 하늘로 나옵니다. 엔드에서"
+      - "&7떨어져도 죽지 않고 대응하는"
+      - "&7오버월드에 도착합니다."
+param:
+  enabled:
+    name: "&a활성화"
+    desc:
+      - "&7규칙을 켜거나 끕니다."
+  creeper_block_damage:
+    also-other-explosions:
+      name: "&a다른 폭발도 포함"
+      desc:
+        - "&7규칙이 꺼져 있을 때 TNT, 가스트,"
+        - "&7침대 등의 폭발에서도 보호합니다."
+  enderman_block_theft:
+    allow-place:
+      name: "&a블록 놓기 허용"
+      desc:
+        - "&7꺼짐: 엔더맨이 들고 있는"
+        - "&7블록도 놓을 수 없습니다."
+  enter_end_portal:
+    message:
+      name: "&a차단 메시지"
+      desc:
+        - "&7차원문이 차단될 때 전송됩니다."
+        - "&7비워 두면 기본 문구를 사용합니다."
+  safe_void_fall:
+    the-end-y:
+      name: "&a발동 Y (디 엔드)"
+      desc:
+        - "&7플레이어를 오버월드로 보내는"
+        - "&7엔드의 높이입니다."
+    overworld-y:
+      name: "&a도착 Y (오버월드)"
+      desc:
+        - "&7도착 높이입니다. 목적지의 건축"
+        - "&7가능 높이로 제한됩니다."
+    max-height-margin:
+      name: "&a높이 여유"
+      desc:
+        - "&7Y가 제한될 때 건축 한계 아래에"
+        - "&7비워 두는 블록 수입니다."
+    fall-damage:
+      name: "&a도착 후 낙하 피해"
+      desc:
+        - "&7켜짐: 일반 낙하 피해를 받습니다."
+        - "&7꺼짐: 도착 후 낙하 피해가 없습니다."
+    keep-velocity:
+      name: "&a낙하 속도 유지"
+      desc:
+        - "&7켜짐: 순간이동 후에도 낙하 속도를"
+        - "&7유지합니다. 꺼짐: 정지 상태에서 시작."
+gui:
+  title:
+    main: "Edict"
+    rule: "Edict: {rule}"
+    scope: "Edict: 범위 선택"
+  close: "&c닫기"
+  back: "&e뒤로"
+  current: "&7{scope}&7: {value}"
+  default: "&7기본값: {value}"
+  range: "&7범위: &f{min} &7~ &f{max}"
+  per-scope: "&7범위별 활성화:"
+  per-scope-line: "&8  {scope}&8: {value}"
+  override:
+    "yes": "&7이 범위에서 재정의: &a예"
+    "no": "&7이 범위에서 재정의: &8아니요 (상속)"
+  rule:
+    controls:
+      - "&e좌클릭: &f설정 열기"
+      - "&e우클릭: &f활성화 전환"
+  controls:
+    bool:
+      - "&e클릭: &f전환"
+    int:
+      - "&e좌/우클릭: &f+/- {step}"
+      - "&eShift + 클릭: &f+/- {big}"
+      - "&eQ (버리기): &f정확한 값 입력"
+    string:
+      - "&e좌클릭: &f채팅으로 값 입력"
+      - "&e우클릭: &f지우기"
+    reset:
+      - "&e휠 클릭: &f재정의 제거 (상속)"
+    reset-global:
+      - "&e휠 클릭: &f기본값으로 되돌리기"
+  scope:
+    button: "&b범위"
+    current: "&7편집 중: &f{scope}"
+    lore:
+      - "&7순서: 월드, 차원, 전체 순으로"
+      - "&7적용됩니다."
+      - "&e클릭하여 변경"
+    header: "&b범위 선택"
+    header-lore:
+      - "&7변경 사항을 적용할 곳을 선택하세요."
+    select: "&e클릭하여 선택"
+    selected: "&a선택됨"
+    entry:
+      global:
+        - "&7모든 월드의 기본값입니다."
+      environment:
+        - "&7이 차원 유형의 모든 월드입니다."
+      world:
+        - "&7이 월드에만 적용됩니다."

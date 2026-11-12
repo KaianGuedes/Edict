@@ -1,0 +1,184 @@
+# Edict 消息(简体中文)。颜色使用 & 代码。{变量} 由插件填充。
+log:
+  enabled: "Edict 已成功启用!(平台:{platform})"
+  disabled: "Edict 已禁用。"
+err:
+  bool: "&c值必须是 true 或 false。"
+  number: "&c值必须是整数。"
+  range: "&c值必须在 {min} 到 {max} 之间。"
+value:
+  "on": "&a开启"
+  "off": "&c关闭"
+  empty: "&8(空)"
+source:
+  default: "&8[默认]"
+  own: "&8[在此设置]"
+  inherited: "&8[继承自 {scope}&8]"
+scope:
+  global: "全局"
+  overworld: "主世界"
+  nether: "下界"
+  the_end: "末地"
+  world: "世界 {name}"
+cmd:
+  no-permission: "&c你没有权限使用此命令。"
+  players-only: "&c只有玩家可以打开界面。"
+  reload: "&a已重新加载配置和语言文件。"
+  bad-scope: "&c未知的范围 '{scope}'。请使用 global、overworld、nether、the_end 或 world:<名称>。"
+  rule-not-found: "&c未找到规则 '{rule}'。"
+  usage:
+    get: "&e用法:/edict get <规则> [参数] [范围]"
+    set: "&e用法:/edict set <规则> [参数] <值> [范围]"
+    reset: "&e用法:/edict reset <规则> [参数] [范围]"
+  help:
+    header: "&e--- Edict ---"
+    lines:
+      - "&7/{label} &8- &f打开界面(玩家)"
+      - "&7/{label} list [范围] &8- &f显示所有规则"
+      - "&7/{label} get <规则> [参数] [范围] &8- &f显示某个值"
+      - "&7/{label} set <规则> [参数] <值> [范围] &8- &f修改某个值"
+      - "&7/{label} reset <规则> [参数] [范围] &8- &f移除覆盖设置"
+      - "&7/{label} reload &8- &f重新读取配置和语言文件"
+      - "&7范围:&fglobal, overworld, nether, the_end, world:<名称>"
+  list:
+    header: "&a--- 当前规则({scope}&a)---"
+    rule: "&e{rule}"
+    param: "&7  {param}:{value} {source}"
+  get: "&7{rule}.{param} = {value} &7(在 {scope} 中){source}"
+  set:
+    ok: "&a已将规则 {rule}({param})在 {scope}&a 中设置为 {value}&a。"
+  reset:
+    ok: "&a已重置规则 {rule}({param})在 {scope}&a 中的设置。"
+prompt:
+  ask: "&e请在聊天中输入 &f{param}&e 的新值,或输入 &f取消&e。"
+  cancelled: "&7已取消。"
+  cancel-word: "取消"
+  saved: "&a{param} 已设置为 {value}。"
+rule:
+  creeper_block_damage:
+    name: "&a苦力怕破坏方块"
+    desc:
+      - "&7决定苦力怕的爆炸能否"
+      - "&7破坏方块。"
+      - "&7关闭:爆炸仍会造成伤害,"
+      - "&7但地形保持完好。"
+  enderman_block_theft:
+    name: "&a末影人搬走方块"
+    desc:
+      - "&7决定末影人能否拿起方块"
+      - "&7(草方块、沙子等)。"
+  enter_end_portal:
+    name: "&a进入末地传送门"
+    desc:
+      - "&7决定玩家能否通过末地传送门"
+      - "&7传送。关闭:传送会被取消,"
+      - "&7“结束了?”进度也不会被触发。"
+    blocked: "&c此处的末地传送门已被禁用。"
+  safe_void_fall:
+    name: "&a安全虚空坠落"
+    desc:
+      - "&7仅限末地:末地的虚空会通向"
+      - "&7主世界的天空。从末地坠落"
+      - "&7不会死亡,玩家会到达对应的"
+      - "&7主世界。"
+param:
+  enabled:
+    name: "&a启用"
+    desc:
+      - "&7开启或关闭该规则。"
+  creeper_block_damage:
+    also-other-explosions:
+      name: "&a包括其他爆炸"
+      desc:
+        - "&7规则关闭时,同样保护方块免受"
+        - "&7TNT、恶魂、床等爆炸的破坏。"
+  enderman_block_theft:
+    allow-place:
+      name: "&a允许放置"
+      desc:
+        - "&7关闭:末影人也不能放下"
+        - "&7手中拿着的方块。"
+  enter_end_portal:
+    message:
+      name: "&a拦截提示"
+      desc:
+        - "&7传送门被拦截时发送给玩家。"
+        - "&7留空则使用默认文本。"
+  safe_void_fall:
+    the-end-y:
+      name: "&a触发 Y(末地)"
+      desc:
+        - "&7末地中将玩家送往主世界的"
+        - "&7高度。"
+    overworld-y:
+      name: "&a到达 Y(主世界)"
+      desc:
+        - "&7到达时的高度,会被限制在"
+        - "&7目标世界的建筑高度内。"
+    max-height-margin:
+      name: "&a高度余量"
+      desc:
+        - "&7限制 Y 时,在建筑高度上限"
+        - "&7之下保留的方块数。"
+    fall-damage:
+      name: "&a到达后的摔落伤害"
+      desc:
+        - "&7开启:正常受到摔落伤害。"
+        - "&7关闭:到达后没有摔落伤害。"
+    keep-velocity:
+      name: "&a保留速度"
+      desc:
+        - "&7开启:传送后保持下落速度。"
+        - "&7关闭:从静止开始下落。"
+gui:
+  title:
+    main: "Edict"
+    rule: "Edict:{rule}"
+    scope: "Edict:选择范围"
+  close: "&c关闭"
+  back: "&e返回"
+  current: "&7{scope}&7:{value}"
+  default: "&7默认:{value}"
+  range: "&7范围:&f{min} &7到 &f{max}"
+  per-scope: "&7各范围的启用状态:"
+  per-scope-line: "&8  {scope}&8:{value}"
+  override:
+    "yes": "&7此范围的覆盖设置:&a有"
+    "no": "&7此范围的覆盖设置:&8无(继承)"
+  rule:
+    controls:
+      - "&e左键:&f打开设置"
+      - "&e右键:&f切换启用"
+  controls:
+    bool:
+      - "&e点击:&f切换"
+    int:
+      - "&e左键/右键:&f+/- {step}"
+      - "&eShift + 点击:&f+/- {big}"
+      - "&eQ(丢弃):&f输入精确值"
+    string:
+      - "&e左键:&f在聊天中输入值"
+      - "&e右键:&f清除"
+    reset:
+      - "&e中键:&f移除覆盖设置(继承)"
+    reset-global:
+      - "&e中键:&f恢复默认值"
+  scope:
+    button: "&b范围"
+    current: "&7正在编辑:&f{scope}"
+    lore:
+      - "&7优先级:世界,其次是维度,"
+      - "&7最后是全局。"
+      - "&e点击切换"
+    header: "&b范围选择"
+    header-lore:
+      - "&7选择更改的生效位置。"
+    select: "&e点击选择"
+    selected: "&a已选择"
+    entry:
+      global:
+        - "&7所有世界的默认设置。"
+      environment:
+        - "&7该维度类型的所有世界。"
+      world:
+        - "&7仅此世界。"

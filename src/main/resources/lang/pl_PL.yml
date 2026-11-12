@@ -1,0 +1,185 @@
+# Komunikaty Edict (polski). Kolory używają kodów &. {zmienne} uzupełnia wtyczka.
+log:
+  enabled: "Edict został pomyślnie włączony! (platforma: {platform})"
+  disabled: "Edict został wyłączony."
+err:
+  bool: "&cWartość musi wynosić true lub false."
+  number: "&cWartość musi być liczbą całkowitą."
+  range: "&cWartość musi mieścić się w przedziale od {min} do {max}."
+value:
+  "on": "&aWŁ."
+  "off": "&cWYŁ."
+  empty: "&8(puste)"
+source:
+  default: "&8[domyślne]"
+  own: "&8[ustawione tutaj]"
+  inherited: "&8[odziedziczone z: {scope}&8]"
+scope:
+  global: "Globalnie"
+  overworld: "Overworld"
+  nether: "Nether"
+  the_end: "Kres"
+  world: "Świat {name}"
+cmd:
+  no-permission: "&cNie masz uprawnień do użycia tej komendy."
+  players-only: "&cInterfejs mogą otworzyć tylko gracze."
+  reload: "&aPrzeładowano konfigurację i pliki językowe."
+  bad-scope: "&cNieznany zakres '{scope}'. Użyj global, overworld, nether, the_end lub world:<nazwa>."
+  rule-not-found: "&cNie znaleziono reguły '{rule}'."
+  usage:
+    get: "&eUżycie: /edict get <reguła> [parametr] [zakres]"
+    set: "&eUżycie: /edict set <reguła> [parametr] <wartość> [zakres]"
+    reset: "&eUżycie: /edict reset <reguła> [parametr] [zakres]"
+  help:
+    header: "&e--- Edict ---"
+    lines:
+      - "&7/{label} &8- &fotwiera interfejs (gracze)"
+      - "&7/{label} list [zakres] &8- &fpokazuje wszystkie reguły"
+      - "&7/{label} get <reguła> [parametr] [zakres] &8- &fpokazuje wartość"
+      - "&7/{label} set <reguła> [parametr] <wartość> [zakres] &8- &fzmienia wartość"
+      - "&7/{label} reset <reguła> [parametr] [zakres] &8- &fusuwa nadpisanie"
+      - "&7/{label} reload &8- &fwczytuje ponownie konfigurację i języki"
+      - "&7Zakresy: &fglobal, overworld, nether, the_end, world:<nazwa>"
+  list:
+    header: "&a--- Aktualne reguły ({scope}&a) ---"
+    rule: "&e{rule}"
+    param: "&7  {param}: {value} {source}"
+  get: "&7{rule}.{param} = {value} &7w zakresie {scope} {source}"
+  set:
+    ok: "&aReguła {rule} ({param}) została ustawiona na {value}&a w zakresie {scope}&a."
+  reset:
+    ok: "&aReguła {rule} ({param}) została zresetowana w zakresie {scope}&a."
+prompt:
+  ask: "&eWpisz na czacie nową wartość dla &f{param}&e lub wpisz &fanuluj&e."
+  cancelled: "&7Anulowano."
+  cancel-word: "anuluj"
+  saved: "&a{param} ustawiono na {value}."
+rule:
+  creeper_block_damage:
+    name: "&aNiszczenie bloków przez Creepera"
+    desc:
+      - "&7Określa, czy wybuchy Creeperów"
+      - "&7mogą niszczyć bloki."
+      - "&7Wył.: wybuch rani, ale teren"
+      - "&7pozostaje nietknięty."
+  enderman_block_theft:
+    name: "&aKradzież bloków przez Endermana"
+    desc:
+      - "&7Określa, czy Endermani mogą"
+      - "&7podnosić bloki (trawę, piasek itd.)."
+  enter_end_portal:
+    name: "&aWejście do portalu do Kresu"
+    desc:
+      - "&7Określa, czy gracze mogą podróżować"
+      - "&7przez portale do Kresu. Wył.: teleportacja"
+      - "&7jest anulowana, a osiągnięcie „Kres?”"
+      - "&7nigdy się nie odblokuje."
+    blocked: "&cPortal do Kresu jest tutaj wyłączony."
+  safe_void_fall:
+    name: "&aBezpieczny upadek w otchłań"
+    desc:
+      - "&7TYLKO KRES: otchłań Kresu prowadzi na"
+      - "&7niebo Overworldu. Upadek z Kresu nigdy"
+      - "&7nie zabija; gracz ląduje w odpowiednim"
+      - "&7Overworldzie."
+param:
+  enabled:
+    name: "&aWłączona"
+    desc:
+      - "&7Włącza lub wyłącza regułę."
+  creeper_block_damage:
+    also-other-explosions:
+      name: "&aTakże inne wybuchy"
+      desc:
+        - "&7Przy wyłączonej regule chroni bloki"
+        - "&7także przed TNT, ghastami, łóżkami itd."
+  enderman_block_theft:
+    allow-place:
+      name: "&aPozwól stawiać"
+      desc:
+        - "&7Wył.: Endermani nie mogą też"
+        - "&7odłożyć niesionego bloku."
+  enter_end_portal:
+    message:
+      name: "&aWiadomość o blokadzie"
+      desc:
+        - "&7Wysyłana, gdy portal jest zablokowany."
+        - "&7Puste: użyty zostanie tekst domyślny."
+  safe_void_fall:
+    the-end-y:
+      name: "&aPoziom Y wyzwalacza (Kres)"
+      desc:
+        - "&7Wysokość w Kresie, od której gracz"
+        - "&7trafia do Overworldu."
+    overworld-y:
+      name: "&aPoziom Y przybycia (Overworld)"
+      desc:
+        - "&7Wysokość przybycia. Ograniczana do"
+        - "&7wysokości budowania celu."
+    max-height-margin:
+      name: "&aMargines wysokości"
+      desc:
+        - "&7Wolne bloki pod limitem budowania,"
+        - "&7gdy Y jest ograniczane."
+    fall-damage:
+      name: "&aObrażenia od upadku po przybyciu"
+      desc:
+        - "&7Wł.: działają zwykłe obrażenia od upadku."
+        - "&7Wył.: brak obrażeń po przybyciu."
+    keep-velocity:
+      name: "&aZachowaj prędkość"
+      desc:
+        - "&7Wł.: prędkość spadania zostaje po"
+        - "&7teleportacji. Wył.: start od zera."
+gui:
+  title:
+    main: "Edict"
+    rule: "Edict: {rule}"
+    scope: "Edict: wybierz zakres"
+  close: "&cZamknij"
+  back: "&eWstecz"
+  current: "&7{scope}&7: {value}"
+  default: "&7Domyślnie: {value}"
+  range: "&7Zakres: &f{min} &7do &f{max}"
+  per-scope: "&7Włączona według zakresu:"
+  per-scope-line: "&8  {scope}&8: {value}"
+  override:
+    "yes": "&7Nadpisanie w tym zakresie: &atak"
+    "no": "&7Nadpisanie w tym zakresie: &8nie (odziedziczone)"
+  rule:
+    controls:
+      - "&eLPM: &fotwórz ustawienia"
+      - "&ePPM: &fprzełącz włączenie"
+  controls:
+    bool:
+      - "&eKlik: &fprzełącz"
+    int:
+      - "&eLPM/PPM: &f+/- {step}"
+      - "&eShift + klik: &f+/- {big}"
+      - "&eQ (wyrzuć): &fwpisz dokładną wartość"
+    string:
+      - "&eLPM: &fwpisz wartość na czacie"
+      - "&ePPM: &fwyczyść"
+    reset:
+      - "&eŚPM: &fusuń nadpisanie (dziedzicz)"
+    reset-global:
+      - "&eŚPM: &fprzywróć domyślną wartość"
+  scope:
+    button: "&bZakres"
+    current: "&7Edytujesz: &f{scope}"
+    lore:
+      - "&7Kolejność: świat, potem wymiar,"
+      - "&7potem globalnie."
+      - "&eKliknij, aby zmienić"
+    header: "&bWybór zakresu"
+    header-lore:
+      - "&7Wybierz, gdzie obowiązują zmiany."
+    select: "&eKliknij, aby wybrać"
+    selected: "&aWybrano"
+    entry:
+      global:
+        - "&7Wartość domyślna dla wszystkich światów."
+      environment:
+        - "&7Wszystkie światy tego typu wymiaru."
+      world:
+        - "&7Tylko ten świat."

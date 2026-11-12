@@ -52,6 +52,7 @@ cmd:
 prompt:
   ask: "&eType the new value for &f{param}&e in chat, or type &fcancel&e."
   cancelled: "&7Cancelled."
+  cancel-word: "cancel"
   saved: "&a{param} set to {value}."
 rule:
   creeper_block_damage:

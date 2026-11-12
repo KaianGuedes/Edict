@@ -5,6 +5,7 @@ api-version: '1.20'
 folia-supported: true
 description: Per-world and per-dimension gameplay rules with a chest GUI.
 authors: [KaianGuedes]
+license: GPL-3.0
 commands:
   edict:
     description: Manage the server rules (GUI, list, get, set, reset, reload).

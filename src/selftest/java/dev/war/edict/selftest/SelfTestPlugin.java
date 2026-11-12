@@ -163,11 +163,73 @@ public final class SelfTestPlugin extends JavaPlugin {
 
     // ------------------------------------------------------------------ i18n
 
+    private static final java.util.regex.Pattern PLACEHOLDER = java.util.regex.Pattern.compile("\\{[^{}]+}");
+
+    /** Every language file: loads without YAML errors, has exactly the en_US keys and the same placeholders per key. */
+    private void languageFiles(Lang lang, Set<String> en) {
+        YamlConfiguration base = loadResource("en_US");
+        for (String code : Lang.BUNDLED) {
+            YamlConfiguration y = loadResource(code);
+            check("lang " + code + " loads without YAML errors", y != null);
+            if (y == null) continue;
+            Set<String> keys = lang.keys(code);
+            check("lang " + code + " has exactly the en_US keys", keys.equals(en), "missing=" + diff(en, keys) + " extra=" + diff(keys, en));
+            List<String> bad = new ArrayList<>();
+            boolean emDash = false;
+            for (String k : en) {
+                if (!placeholders(base, k).equals(placeholders(y, k))) bad.add(k);
+                if (String.valueOf(y.get(k)).indexOf((char) 0x2014) >= 0) emDash = true;
+                if (!(y.isString(k) || y.isList(k)) || String.valueOf(y.get(k)).isBlank()) bad.add(k + " (empty)");
+                if (base.isList(k) != y.isList(k)) bad.add(k + " (type)");
+            }
+            check("lang " + code + " placeholders match en_US", bad.isEmpty(), bad.toString());
+            check("lang " + code + " has no em dash", !emDash);
+            check("lang " + code + " color codes match en_US", colorsMatch(base, y, en));
+        }
+    }
+
+    private YamlConfiguration loadResource(String code) {
+        try (java.io.InputStream in = ed.getResource("lang/" + code + ".yml")) {
+            if (in == null) return null;
+            YamlConfiguration y = new YamlConfiguration();
+            y.loadFromString(new String(in.readAllBytes(), StandardCharsets.UTF_8));
+            return y;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private static String text(YamlConfiguration y, String key) {
+        return y.isList(key) ? String.join("\n", y.getStringList(key)) : String.valueOf(y.get(key));
+    }
+
+    private static java.util.Map<String, Integer> placeholders(YamlConfiguration y, String key) {
+        java.util.Map<String, Integer> m = new java.util.TreeMap<>();
+        java.util.regex.Matcher mt = PLACEHOLDER.matcher(text(y, key));
+        while (mt.find()) m.merge(mt.group(), 1, Integer::sum);
+        return m;
+    }
+
+    /** Whether every key keeps the set of &-codes it has in en_US (a color is never lost or invented). */
+    private static boolean colorsMatch(YamlConfiguration base, YamlConfiguration y, Set<String> keys) {
+        java.util.regex.Pattern codes = java.util.regex.Pattern.compile("&[0-9a-fk-or]");
+        for (String k : keys) {
+            Set<String> a = new TreeSet<>();
+            Set<String> b = new TreeSet<>();
+            java.util.regex.Matcher m1 = codes.matcher(text(base, k));
+            while (m1.find()) a.add(m1.group());
+            java.util.regex.Matcher m2 = codes.matcher(text(y, k));
+            while (m2.find()) b.add(m2.group());
+            if (!a.equals(b)) return false;
+        }
+        return true;
+    }
+
     private void i18n() {
         Lang lang = ed.lang();
         Set<String> en = lang.keys("en_US");
         Set<String> pt = lang.keys("pt_BR");
-        check("en_US and pt_BR define the same keys", en.equals(pt), "onlyEn=" + diff(en, pt) + " onlyPt=" + diff(pt, en));
+        languageFiles(lang, en);
         List<String> need = new ArrayList<>(List.of("log.enabled", "log.disabled", "err.bool", "err.number", "err.range", "value.on",
                 "value.off", "value.empty", "source.default", "source.own", "source.inherited", "scope.global", "scope.overworld",
                 "scope.nether", "scope.the_end", "scope.world", "cmd.no-permission", "cmd.players-only", "cmd.reload", "cmd.bad-scope",
@@ -192,8 +254,20 @@ public final class SelfTestPlugin extends JavaPlugin {
         List<String> missing = new ArrayList<>();
         for (String k : need) if (!en.contains(k) || !pt.contains(k)) missing.add(k);
         check("every key used by the plugin exists in both languages", missing.isEmpty(), missing.toString());
-        check("locale pt_br -> pt_BR", Lang.match("pt_br").equals("pt_BR") && Lang.match("pt-PT").equals("pt_BR"));
-        check("locale en_us / de_de -> en_US", Lang.match("en_us").equals("en_US") && Lang.match("de_de").equals("en_US"));
+        check("locale pt_br -> pt_BR", Lang.match("pt_br").equals("pt_BR") && Lang.match("pt-PT").equals("pt_PT"));
+        check("locale en_us / en_gb -> en_US", Lang.match("en_us").equals("en_US") && Lang.match("en_gb").equals("en_US"));
+        check("locale exact matches", Lang.match("de_de").equals("de_DE") && Lang.match("ja_jp").equals("ja_JP")
+                && Lang.match("zh_tw").equals("zh_TW") && Lang.match("uk_ua").equals("uk_UA") && Lang.match("es_mx").equals("es_MX"));
+        check("locale prefix fallback", Lang.match("es_ar").equals("es_ES") && Lang.match("fr_CA").equals("fr_FR")
+                && Lang.match("de-AT").equals("de_DE") && Lang.match("pt_AO").equals("pt_BR") && Lang.match("ru").equals("ru_RU")
+                && Lang.match("it_CH").equals("it_IT") && Lang.match("ko").equals("ko_KR"));
+        check("locale zh variants", Lang.match("zh_hk").equals("zh_TW") && Lang.match("zh_Hant").equals("zh_TW")
+                && Lang.match("zh_sg").equals("zh_CN") && Lang.match("zh").equals("zh_CN"));
+        check("locale unknown -> en_US", Lang.match("sv_se").equals("en_US") && Lang.match("").equals("en_US") && Lang.find("xx_YY") == null);
+        check("every bundled language is a lang code", Lang.BUNDLED.size() == 16 && Lang.BUNDLED.contains("uk_UA"));
+        for (String code : Lang.BUNDLED) {
+            check("locale " + code + " resolves to itself", Lang.match(code).equals(code) && Lang.match(code.toLowerCase()).equals(code));
+        }
         check("pt_BR keeps the old Portuguese text", lang.get("pt_BR", "cmd.no-permission").contains("Você não tem permissão"));
         check("en_US text differs", lang.get("en_US", "cmd.no-permission").contains("do not have permission"));
     }

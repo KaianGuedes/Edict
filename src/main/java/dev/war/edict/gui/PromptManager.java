@@ -51,7 +51,8 @@ public final class PromptManager {
 
     private void apply(Player player, Prompt prompt, String message) {
         String text = message.trim();
-        if (text.equalsIgnoreCase("cancel") || text.equalsIgnoreCase("cancelar")) {
+        String word = plugin.lang().raw(plugin.lang().localeOf(player), "prompt.cancel-word").trim();
+        if (text.equalsIgnoreCase("cancel") || text.equalsIgnoreCase(word)) {
             plugin.lang().send(player, "prompt.cancelled");
         } else {
             try {

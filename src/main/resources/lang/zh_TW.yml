@@ -1,0 +1,184 @@
+# Edict 訊息(繁體中文)。顏色使用 & 代碼。{變數} 由外掛填入。
+log:
+  enabled: "Edict 已成功啟用!(平台:{platform})"
+  disabled: "Edict 已停用。"
+err:
+  bool: "&c數值必須是 true 或 false。"
+  number: "&c數值必須是整數。"
+  range: "&c數值必須介於 {min} 與 {max} 之間。"
+value:
+  "on": "&a開啟"
+  "off": "&c關閉"
+  empty: "&8(空白)"
+source:
+  default: "&8[預設]"
+  own: "&8[於此設定]"
+  inherited: "&8[繼承自 {scope}&8]"
+scope:
+  global: "全域"
+  overworld: "主世界"
+  nether: "地獄"
+  the_end: "終界"
+  world: "世界 {name}"
+cmd:
+  no-permission: "&c你沒有權限使用此指令。"
+  players-only: "&c只有玩家可以開啟介面。"
+  reload: "&a已重新載入設定與語言檔案。"
+  bad-scope: "&c未知的範圍 '{scope}'。請使用 global、overworld、nether、the_end 或 world:<名稱>。"
+  rule-not-found: "&c找不到規則 '{rule}'。"
+  usage:
+    get: "&e用法:/edict get <規則> [參數] [範圍]"
+    set: "&e用法:/edict set <規則> [參數] <數值> [範圍]"
+    reset: "&e用法:/edict reset <規則> [參數] [範圍]"
+  help:
+    header: "&e--- Edict ---"
+    lines:
+      - "&7/{label} &8- &f開啟介面(玩家)"
+      - "&7/{label} list [範圍] &8- &f顯示所有規則"
+      - "&7/{label} get <規則> [參數] [範圍] &8- &f顯示某個數值"
+      - "&7/{label} set <規則> [參數] <數值> [範圍] &8- &f修改某個數值"
+      - "&7/{label} reset <規則> [參數] [範圍] &8- &f移除覆寫設定"
+      - "&7/{label} reload &8- &f重新讀取設定與語言檔案"
+      - "&7範圍:&fglobal, overworld, nether, the_end, world:<名稱>"
+  list:
+    header: "&a--- 目前規則({scope}&a)---"
+    rule: "&e{rule}"
+    param: "&7  {param}:{value} {source}"
+  get: "&7{rule}.{param} = {value} &7(於 {scope}){source}"
+  set:
+    ok: "&a已將規則 {rule}({param})在 {scope}&a 設定為 {value}&a。"
+  reset:
+    ok: "&a已重設規則 {rule}({param})在 {scope}&a 的設定。"
+prompt:
+  ask: "&e請在聊天室輸入 &f{param}&e 的新數值,或輸入 &f取消&e。"
+  cancelled: "&7已取消。"
+  cancel-word: "取消"
+  saved: "&a{param} 已設定為 {value}。"
+rule:
+  creeper_block_damage:
+    name: "&a苦力怕破壞方塊"
+    desc:
+      - "&7決定苦力怕的爆炸能否"
+      - "&7破壞方塊。"
+      - "&7關閉:爆炸仍會造成傷害,"
+      - "&7但地形保持完整。"
+  enderman_block_theft:
+    name: "&a終界使者搬走方塊"
+    desc:
+      - "&7決定終界使者能否拿起方塊"
+      - "&7(草方塊、沙子等)。"
+  enter_end_portal:
+    name: "&a進入終界傳送門"
+    desc:
+      - "&7決定玩家能否透過終界傳送門"
+      - "&7傳送。關閉:傳送會被取消,"
+      - "&7「結束了?」成就也不會被觸發。"
+    blocked: "&c此處的終界傳送門已被停用。"
+  safe_void_fall:
+    name: "&a安全虛空墜落"
+    desc:
+      - "&7僅限終界:終界的虛空會通往"
+      - "&7主世界的天空。從終界墜落"
+      - "&7不會死亡,玩家會抵達對應的"
+      - "&7主世界。"
+param:
+  enabled:
+    name: "&a啟用"
+    desc:
+      - "&7開啟或關閉此規則。"
+  creeper_block_damage:
+    also-other-explosions:
+      name: "&a包含其他爆炸"
+      desc:
+        - "&7規則關閉時,同樣保護方塊免受"
+        - "&7TNT、地獄幽靈、床等爆炸破壞。"
+  enderman_block_theft:
+    allow-place:
+      name: "&a允許放置"
+      desc:
+        - "&7關閉:終界使者也無法放下"
+        - "&7手中拿著的方塊。"
+  enter_end_portal:
+    message:
+      name: "&a攔截提示"
+      desc:
+        - "&7傳送門被攔截時傳送給玩家。"
+        - "&7留空則使用預設文字。"
+  safe_void_fall:
+    the-end-y:
+      name: "&a觸發 Y(終界)"
+      desc:
+        - "&7終界中將玩家送往主世界的"
+        - "&7高度。"
+    overworld-y:
+      name: "&a抵達 Y(主世界)"
+      desc:
+        - "&7抵達時的高度,會被限制在"
+        - "&7目標世界的建築高度內。"
+    max-height-margin:
+      name: "&a高度餘量"
+      desc:
+        - "&7限制 Y 時,在建築高度上限"
+        - "&7之下保留的方塊數。"
+    fall-damage:
+      name: "&a抵達後的摔落傷害"
+      desc:
+        - "&7開啟:正常受到摔落傷害。"
+        - "&7關閉:抵達後沒有摔落傷害。"
+    keep-velocity:
+      name: "&a保留速度"
+      desc:
+        - "&7開啟:傳送後維持下落速度。"
+        - "&7關閉:從靜止開始下落。"
+gui:
+  title:
+    main: "Edict"
+    rule: "Edict:{rule}"
+    scope: "Edict:選擇範圍"
+  close: "&c關閉"
+  back: "&e返回"
+  current: "&7{scope}&7:{value}"
+  default: "&7預設:{value}"
+  range: "&7範圍:&f{min} &7到 &f{max}"
+  per-scope: "&7各範圍的啟用狀態:"
+  per-scope-line: "&8  {scope}&8:{value}"
+  override:
+    "yes": "&7此範圍的覆寫設定:&a有"
+    "no": "&7此範圍的覆寫設定:&8無(繼承)"
+  rule:
+    controls:
+      - "&e左鍵:&f開啟設定"
+      - "&e右鍵:&f切換啟用"
+  controls:
+    bool:
+      - "&e點擊:&f切換"
+    int:
+      - "&e左鍵/右鍵:&f+/- {step}"
+      - "&eShift + 點擊:&f+/- {big}"
+      - "&eQ(丟棄):&f輸入精確數值"
+    string:
+      - "&e左鍵:&f在聊天室輸入數值"
+      - "&e右鍵:&f清除"
+    reset:
+      - "&e中鍵:&f移除覆寫設定(繼承)"
+    reset-global:
+      - "&e中鍵:&f還原為預設值"
+  scope:
+    button: "&b範圍"
+    current: "&7正在編輯:&f{scope}"
+    lore:
+      - "&7優先順序:世界,其次是維度,"
+      - "&7最後是全域。"
+      - "&e點擊切換"
+    header: "&b範圍選擇"
+    header-lore:
+      - "&7選擇變更的生效位置。"
+    select: "&e點擊選擇"
+    selected: "&a已選擇"
+    entry:
+      global:
+        - "&7所有世界的預設設定。"
+      environment:
+        - "&7此維度類型的所有世界。"
+      world:
+        - "&7僅限此世界。"

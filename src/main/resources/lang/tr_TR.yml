@@ -1,0 +1,185 @@
+# Edict mesajları (Türkçe). Renkler & kodlarını kullanır. {değişkenler} eklenti tarafından doldurulur.
+log:
+  enabled: "Edict başarıyla etkinleştirildi! (platform: {platform})"
+  disabled: "Edict devre dışı bırakıldı."
+err:
+  bool: "&cDeğer true veya false olmalıdır."
+  number: "&cDeğer bir tam sayı olmalıdır."
+  range: "&cDeğer {min} ile {max} arasında olmalıdır."
+value:
+  "on": "&aAÇIK"
+  "off": "&cKAPALI"
+  empty: "&8(boş)"
+source:
+  default: "&8[varsayılan]"
+  own: "&8[burada ayarlandı]"
+  inherited: "&8[{scope}&8 kapsamından devralındı]"
+scope:
+  global: "Genel"
+  overworld: "Overworld"
+  nether: "Nether"
+  the_end: "End"
+  world: "Dünya {name}"
+cmd:
+  no-permission: "&cBu komutu kullanma iznin yok."
+  players-only: "&cArayüzü yalnızca oyuncular açabilir."
+  reload: "&aYapılandırma ve dil dosyaları yeniden yüklendi."
+  bad-scope: "&c'{scope}' adlı kapsam bilinmiyor. global, overworld, nether, the_end veya world:<ad> kullan."
+  rule-not-found: "&c'{rule}' kuralı bulunamadı."
+  usage:
+    get: "&eKullanım: /edict get <kural> [parametre] [kapsam]"
+    set: "&eKullanım: /edict set <kural> [parametre] <değer> [kapsam]"
+    reset: "&eKullanım: /edict reset <kural> [parametre] [kapsam]"
+  help:
+    header: "&e--- Edict ---"
+    lines:
+      - "&7/{label} &8- &farayüzü açar (oyuncular)"
+      - "&7/{label} list [kapsam] &8- &ftüm kuralları gösterir"
+      - "&7/{label} get <kural> [parametre] [kapsam] &8- &fbir değeri gösterir"
+      - "&7/{label} set <kural> [parametre] <değer> [kapsam] &8- &fbir değeri değiştirir"
+      - "&7/{label} reset <kural> [parametre] [kapsam] &8- &fgeçersiz kılmayı kaldırır"
+      - "&7/{label} reload &8- &fyapılandırmayı ve dilleri yeniden okur"
+      - "&7Kapsamlar: &fglobal, overworld, nether, the_end, world:<ad>"
+  list:
+    header: "&a--- Geçerli kurallar ({scope}&a) ---"
+    rule: "&e{rule}"
+    param: "&7  {param}: {value} {source}"
+  get: "&7{rule}.{param} = {value} &7({scope} kapsamında) {source}"
+  set:
+    ok: "&a{rule} kuralı ({param}), {scope}&a kapsamında {value}&a olarak ayarlandı."
+  reset:
+    ok: "&a{rule} kuralı ({param}), {scope}&a kapsamında sıfırlandı."
+prompt:
+  ask: "&e&f{param}&e için yeni değeri sohbete yaz ya da &fiptal&e yaz."
+  cancelled: "&7İptal edildi."
+  cancel-word: "iptal"
+  saved: "&a{param} değeri {value} olarak ayarlandı."
+rule:
+  creeper_block_damage:
+    name: "&aCreeper blok hasarı"
+    desc:
+      - "&7Creeper patlamalarının blokları"
+      - "&7yıkıp yıkamayacağını belirler."
+      - "&7Kapalı: patlama hasar verir ama"
+      - "&7arazi sağlam kalır."
+  enderman_block_theft:
+    name: "&aEnderman blok hırsızlığı"
+    desc:
+      - "&7Endermanların blok (çim, kum vb.)"
+      - "&7alıp alamayacağını belirler."
+  enter_end_portal:
+    name: "&aEnd Portalına girme"
+    desc:
+      - "&7Oyuncuların End Portallarından geçip"
+      - "&7geçemeyeceğini belirler. Kapalı: ışınlanma"
+      - "&7iptal edilir ve 'End?' başarımı"
+      - "&7hiç açılmaz."
+    blocked: "&cEnd Portalı burada devre dışı."
+  safe_void_fall:
+    name: "&aGüvenli boşluk düşüşü"
+    desc:
+      - "&7YALNIZCA END: End boşluğu Overworld"
+      - "&7gökyüzüne çıkar. End'den düşmek asla"
+      - "&7öldürmez; oyuncu karşılık gelen"
+      - "&7Overworld'e iner."
+param:
+  enabled:
+    name: "&aEtkin"
+    desc:
+      - "&7Kuralı açar veya kapatır."
+  creeper_block_damage:
+    also-other-explosions:
+      name: "&aDiğer patlamalar da"
+      desc:
+        - "&7Kural kapalıyken blokları TNT,"
+        - "&7ghast, yatak vb. patlamalardan da korur."
+  enderman_block_theft:
+    allow-place:
+      name: "&aKoymaya izin ver"
+      desc:
+        - "&7Kapalı: Endermanlar taşıdıkları"
+        - "&7bloğu da yerleştiremez."
+  enter_end_portal:
+    message:
+      name: "&aEngel mesajı"
+      desc:
+        - "&7Portal engellendiğinde gönderilir."
+        - "&7Boş bırakılırsa varsayılan metin kullanılır."
+  safe_void_fall:
+    the-end-y:
+      name: "&aTetik Y (End)"
+      desc:
+        - "&7End'de oyuncuyu Overworld'e"
+        - "&7gönderen yükseklik."
+    overworld-y:
+      name: "&aVarış Y (Overworld)"
+      desc:
+        - "&7Varış yüksekliği. Hedefin yapı"
+        - "&7yüksekliğiyle sınırlandırılır."
+    max-height-margin:
+      name: "&aYükseklik payı"
+      desc:
+        - "&7Y sınırlandığında yapı sınırının"
+        - "&7altında boş bırakılan blok sayısı."
+    fall-damage:
+      name: "&aVarışta düşme hasarı"
+      desc:
+        - "&7Açık: normal düşme hasarı geçerli."
+        - "&7Kapalı: varıştan sonra hasar yok."
+    keep-velocity:
+      name: "&aHızı koru"
+      desc:
+        - "&7Açık: ışınlanma sonrası düşme hızı"
+        - "&7korunur. Kapalı: düşüş durağan başlar."
+gui:
+  title:
+    main: "Edict"
+    rule: "Edict: {rule}"
+    scope: "Edict: kapsam seç"
+  close: "&cKapat"
+  back: "&eGeri"
+  current: "&7{scope}&7: {value}"
+  default: "&7Varsayılan: {value}"
+  range: "&7Aralık: &f{min} &7ile &f{max}"
+  per-scope: "&7Kapsama göre etkin:"
+  per-scope-line: "&8  {scope}&8: {value}"
+  override:
+    "yes": "&7Bu kapsamda geçersiz kılma: &avar"
+    "no": "&7Bu kapsamda geçersiz kılma: &8yok (devralındı)"
+  rule:
+    controls:
+      - "&eSol tık: &fayarları aç"
+      - "&eSağ tık: &fetkini aç/kapat"
+  controls:
+    bool:
+      - "&eTık: &fdeğiştir"
+    int:
+      - "&eSol/Sağ tık: &f+/- {step}"
+      - "&eShift + tık: &f+/- {big}"
+      - "&eQ (at): &fkesin değer yaz"
+    string:
+      - "&eSol tık: &fsohbete değer yaz"
+      - "&eSağ tık: &ftemizle"
+    reset:
+      - "&eOrta tık: &fgeçersiz kılmayı kaldır (devral)"
+    reset-global:
+      - "&eOrta tık: &fvarsayılana döndür"
+  scope:
+    button: "&bKapsam"
+    current: "&7Düzenlenen: &f{scope}"
+    lore:
+      - "&7Sıra: dünya, sonra boyut,"
+      - "&7sonra genel."
+      - "&eDeğiştirmek için tıkla"
+    header: "&bKapsam seçici"
+    header-lore:
+      - "&7Değişikliklerin nerede geçerli olacağını seç."
+    select: "&eSeçmek için tıkla"
+    selected: "&aSeçildi"
+    entry:
+      global:
+        - "&7Tüm dünyalar için varsayılan."
+      environment:
+        - "&7Bu boyut türündeki tüm dünyalar."
+      world:
+        - "&7Yalnızca bu dünya."

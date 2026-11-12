@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Upgrades a 0.1 config (flat {@code rules.<name>: true/false}) to the structured 0.2 format.
+ * Upgrades a 0.1 config (flat {@code rules.<name>: true/false}) to the structured format.
  * The old file is kept as a backup and nothing the old file said is lost.
  */
 public final class ConfigMigrator {
@@ -65,7 +65,7 @@ public final class ConfigMigrator {
         try {
             File backup = backupFile(file);
             Files.copy(file.toPath(), backup.toPath(), StandardCopyOption.COPY_ATTRIBUTES);
-            plugin.getLogger().info("Migrating config.yml from the 0.1 format to the 0.2 format (backup: " + backup.getName() + ").");
+            plugin.getLogger().info("Migrating config.yml from the PluginRules 0.1 format to the current format (backup: " + backup.getName() + ").");
 
             String text = defaultConfigText(plugin);
             for (Map.Entry<String, Boolean> e : legacy.entrySet()) {

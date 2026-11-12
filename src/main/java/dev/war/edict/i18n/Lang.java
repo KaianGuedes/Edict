@@ -28,7 +28,8 @@ import java.util.TreeSet;
 public final class Lang {
 
     public static final String DEFAULT = "en_US";
-    public static final List<String> BUNDLED = List.of("en_US", "pt_BR");
+    public static final List<String> BUNDLED = List.of("en_US", "pt_BR", "pt_PT", "es_ES", "es_MX", "fr_FR", "de_DE", "it_IT",
+            "ja_JP", "ko_KR", "zh_CN", "zh_TW", "ru_RU", "pl_PL", "tr_TR", "uk_UA");
 
     private final Edict plugin;
     private final Map<String, YamlConfiguration> jar = new LinkedHashMap<>();
@@ -62,6 +63,11 @@ public final class Lang {
                 }
             }
         }
+        if (!configured.equalsIgnoreCase("auto")) {
+            for (String code : BUNDLED) {
+                if (code.equalsIgnoreCase(configured.replace('-', '_'))) configured = code;
+            }
+        }
         if (!BUNDLED.contains(configured) && !configured.equalsIgnoreCase("auto")) {
             plugin.getLogger().warning("Unknown language '" + configured + "' in config.yml, using auto.");
             configured = "auto";
@@ -80,23 +86,46 @@ public final class Lang {
     /** The language code to use for a sender. */
     public String localeOf(CommandSender sender) {
         if (!configured.equalsIgnoreCase("auto")) return configured;
-        String raw = null;
+        String client = null;
         if (sender instanceof Player p) {
             try {
-                raw = p.getLocale();
+                client = p.getLocale();
             } catch (Throwable ignored) {
-                raw = null;
+                client = null;
             }
         }
-        if (raw == null || raw.isEmpty()) raw = Locale.getDefault().toString();
-        return match(raw);
+        String code = client == null || client.isEmpty() ? null : find(client);
+        if (code == null) code = find(Locale.getDefault().toString());
+        return code == null ? DEFAULT : code;
     }
 
-    /** Maps a client locale such as {@code pt_br} or {@code pt-PT} to a bundled language code. */
+    /**
+     * Maps a locale such as {@code pt_br}, {@code es-AR} or {@code zh_Hant_TW} to a bundled language code, or null when
+     * nothing fits: first an exact match, then the first bundled language with the same language prefix.
+     */
+    public static String find(String raw) {
+        if (raw == null) return null;
+        String s = raw.trim().toLowerCase(Locale.ROOT).replace('-', '_');
+        if (s.isEmpty()) return null;
+        for (String code : BUNDLED) {
+            if (code.toLowerCase(Locale.ROOT).equals(s)) return code;
+        }
+        String lang = s.contains("_") ? s.substring(0, s.indexOf('_')) : s;
+        if (lang.equals("zh")) {
+            // Traditional script and regions (Taiwan, Hong Kong, Macau) use zh_TW, everything else zh_CN
+            boolean traditional = s.contains("hant") || s.endsWith("_tw") || s.endsWith("_hk") || s.endsWith("_mo");
+            return traditional ? "zh_TW" : "zh_CN";
+        }
+        for (String code : BUNDLED) {
+            if (code.toLowerCase(Locale.ROOT).startsWith(lang + "_")) return code;
+        }
+        return null;
+    }
+
+    /** Like {@link #find(String)} but ends at the default language. */
     public static String match(String raw) {
-        String s = raw.toLowerCase(Locale.ROOT).replace('-', '_');
-        if (s.startsWith("pt")) return "pt_BR";
-        return DEFAULT;
+        String code = find(raw);
+        return code == null ? DEFAULT : code;
     }
 
     private String lookup(String code, String key) {

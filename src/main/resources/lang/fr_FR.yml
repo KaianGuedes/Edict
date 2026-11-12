@@ -1,0 +1,185 @@
+# Messages d'Edict (français). Les couleurs utilisent des codes &. Les {variables} sont remplies par le plugin.
+log:
+  enabled: "Edict activé avec succès ! (plateforme : {platform})"
+  disabled: "Edict désactivé."
+err:
+  bool: "&cLa valeur doit être true ou false."
+  number: "&cLa valeur doit être un nombre entier."
+  range: "&cLa valeur doit être comprise entre {min} et {max}."
+value:
+  "on": "&aACTIVÉ"
+  "off": "&cDÉSACTIVÉ"
+  empty: "&8(vide)"
+source:
+  default: "&8[par défaut]"
+  own: "&8[défini ici]"
+  inherited: "&8[hérité de {scope}&8]"
+scope:
+  global: "Global"
+  overworld: "Overworld"
+  nether: "Nether"
+  the_end: "L'End"
+  world: "Monde {name}"
+cmd:
+  no-permission: "&cVous n'avez pas la permission d'utiliser cette commande."
+  players-only: "&cSeuls les joueurs peuvent ouvrir l'interface."
+  reload: "&aConfiguration et fichiers de langue rechargés."
+  bad-scope: "&cPortée '{scope}' inconnue. Utilisez global, overworld, nether, the_end ou world:<nom>."
+  rule-not-found: "&cRègle '{rule}' introuvable."
+  usage:
+    get: "&eUtilisation : /edict get <règle> [paramètre] [portée]"
+    set: "&eUtilisation : /edict set <règle> [paramètre] <valeur> [portée]"
+    reset: "&eUtilisation : /edict reset <règle> [paramètre] [portée]"
+  help:
+    header: "&e--- Edict ---"
+    lines:
+      - "&7/{label} &8- &fouvre l'interface (joueurs)"
+      - "&7/{label} list [portée] &8- &faffiche toutes les règles"
+      - "&7/{label} get <règle> [paramètre] [portée] &8- &faffiche une valeur"
+      - "&7/{label} set <règle> [paramètre] <valeur> [portée] &8- &fmodifie une valeur"
+      - "&7/{label} reset <règle> [paramètre] [portée] &8- &fsupprime une surcharge"
+      - "&7/{label} reload &8- &frelit la configuration et les langues"
+      - "&7Portées : &fglobal, overworld, nether, the_end, world:<nom>"
+  list:
+    header: "&a--- Règles actuelles ({scope}&a) ---"
+    rule: "&e{rule}"
+    param: "&7  {param} : {value} {source}"
+  get: "&7{rule}.{param} = {value} &7dans {scope} {source}"
+  set:
+    ok: "&aLa règle {rule} ({param}) est définie sur {value}&a dans {scope}&a."
+  reset:
+    ok: "&aLa règle {rule} ({param}) est réinitialisée dans {scope}&a."
+prompt:
+  ask: "&eÉcrivez dans le chat la nouvelle valeur de &f{param}&e, ou écrivez &fannuler&e."
+  cancelled: "&7Annulé."
+  cancel-word: "annuler"
+  saved: "&a{param} défini sur {value}."
+rule:
+  creeper_block_damage:
+    name: "&aDégâts de blocs du Creeper"
+    desc:
+      - "&7Définit si les explosions de Creeper"
+      - "&7peuvent détruire des blocs."
+      - "&7Désactivé : l'explosion blesse, mais"
+      - "&7le terrain reste intact."
+  enderman_block_theft:
+    name: "&aVol de blocs de l'Enderman"
+    desc:
+      - "&7Définit si les Endermen peuvent"
+      - "&7prendre des blocs (herbe, sable...)."
+  enter_end_portal:
+    name: "&aEntrer dans le portail de l'End"
+    desc:
+      - "&7Définit si les joueurs peuvent utiliser"
+      - "&7les portails de l'End. Désactivé : la"
+      - "&7téléportation est annulée et le succès"
+      - "&7« L'End ? » n'est jamais obtenu."
+    blocked: "&cLe portail de l'End est désactivé ici."
+  safe_void_fall:
+    name: "&aChute sûre dans le vide"
+    desc:
+      - "&7UNIQUEMENT L'END : le vide de l'End mène"
+      - "&7au ciel de l'Overworld. Tomber de l'End"
+      - "&7ne tue jamais ; le joueur arrive dans"
+      - "&7l'Overworld correspondant."
+param:
+  enabled:
+    name: "&aActivée"
+    desc:
+      - "&7Active ou désactive la règle."
+  creeper_block_damage:
+    also-other-explosions:
+      name: "&aAutres explosions aussi"
+      desc:
+        - "&7Règle désactivée : protège aussi"
+        - "&7des blocs contre TNT, ghasts, lits..."
+  enderman_block_theft:
+    allow-place:
+      name: "&aAutoriser la pose"
+      desc:
+        - "&7Désactivé : les Endermen ne peuvent"
+        - "&7pas non plus poser le bloc porté."
+  enter_end_portal:
+    message:
+      name: "&aMessage de blocage"
+      desc:
+        - "&7Envoyé quand le portail est bloqué."
+        - "&7Vide : le texte par défaut."
+  safe_void_fall:
+    the-end-y:
+      name: "&aY de déclenchement (End)"
+      desc:
+        - "&7Hauteur dans l'End qui envoie le"
+        - "&7joueur dans l'Overworld."
+    overworld-y:
+      name: "&aY d'arrivée (Overworld)"
+      desc:
+        - "&7Hauteur d'arrivée. Limitée à la hauteur"
+        - "&7de construction de la destination."
+    max-height-margin:
+      name: "&aMarge de hauteur"
+      desc:
+        - "&7Blocs laissés libres sous la limite"
+        - "&7de construction si le Y est limité."
+    fall-damage:
+      name: "&aDégâts de chute à l'arrivée"
+      desc:
+        - "&7Activé : dégâts de chute normaux."
+        - "&7Désactivé : aucun dégât à l'arrivée."
+    keep-velocity:
+      name: "&aConserver la vitesse"
+      desc:
+        - "&7Activé : garde la vitesse de chute après"
+        - "&7la téléportation. Désactivé : départ à l'arrêt."
+gui:
+  title:
+    main: "Edict"
+    rule: "Edict : {rule}"
+    scope: "Edict : choisir la portée"
+  close: "&cFermer"
+  back: "&eRetour"
+  current: "&7{scope}&7 : {value}"
+  default: "&7Par défaut : {value}"
+  range: "&7Plage : &f{min} &7à &f{max}"
+  per-scope: "&7Activée par portée :"
+  per-scope-line: "&8  {scope}&8 : {value}"
+  override:
+    "yes": "&7Surcharge dans cette portée : &aoui"
+    "no": "&7Surcharge dans cette portée : &8non (hérité)"
+  rule:
+    controls:
+      - "&eClic gauche : &fouvrir les réglages"
+      - "&eClic droit : &factiver/désactiver"
+  controls:
+    bool:
+      - "&eClic : &fbasculer"
+    int:
+      - "&eClic gauche/droit : &f+/- {step}"
+      - "&eMaj + clic : &f+/- {big}"
+      - "&eQ (jeter) : &fsaisir une valeur exacte"
+    string:
+      - "&eClic gauche : &fsaisir une valeur dans le chat"
+      - "&eClic droit : &feffacer"
+    reset:
+      - "&eClic central : &fsupprimer la surcharge (hériter)"
+    reset-global:
+      - "&eClic central : &frétablir la valeur par défaut"
+  scope:
+    button: "&bPortée"
+    current: "&7Édition : &f{scope}"
+    lore:
+      - "&7Ordre : monde, puis dimension,"
+      - "&7puis global."
+      - "&eCliquez pour changer"
+    header: "&bSélecteur de portée"
+    header-lore:
+      - "&7Choisissez où s'appliquent vos changements."
+    select: "&eCliquez pour sélectionner"
+    selected: "&aSélectionné"
+    entry:
+      global:
+        - "&7La valeur par défaut de tous les mondes."
+      environment:
+        - "&7Tous les mondes de ce type de dimension."
+      world:
+        - "&7Ce monde uniquement."

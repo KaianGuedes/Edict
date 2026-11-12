@@ -1,5 +1,5 @@
 name: EdictSelfTest
-version: '0.2'
+version: '0.1.0'
 main: dev.war.edict.selftest.SelfTestPlugin
 api-version: '1.20'
 depend: [Edict]
