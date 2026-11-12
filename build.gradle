@@ -21,17 +21,22 @@ repositories {
 sourceSets {
     paper {
         java.srcDir 'src/paper/java'
-        compileClasspath += sourceSets.main.output + configurations.compileClasspath
+    }
+    selftest {
+        java.srcDir 'src/selftest/java'
+        resources.srcDir 'src/selftest/resources'
     }
 }
 
 configurations {
-    paperCompileOnly.extendsFrom compileOnly
+    paperApi
 }
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
-    paperCompileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    paperApi("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    selftestCompileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
+    selftestCompileOnly(sourceSets.main.output)
 }
 
 java {
@@ -46,9 +51,9 @@ tasks.withType(JavaCompile).configureEach {
     options.release.set(17)
 }
 
-// the paper classes must not see the spigot-api jar first (paper-api already contains it)
 tasks.named('compilePaperJava') {
-    classpath = sourceSets.paper.output.classesDirs.plus(sourceSets.main.output).plus(configurations.paperCompileClasspath)
+    classpath = files(sourceSets.main.output) + configurations.paperApi
+    dependsOn tasks.named('classes')
 }
 
 processResources {
@@ -68,3 +73,12 @@ jar {
         attributes('paperweight-mappings-namespace': 'mojang')
     }
 }
+
+// harness plugin used only by the test servers (never shipped)
+tasks.register('selftestJar', Jar) {
+    archiveBaseName = 'PluginRulesSelfTest'
+    from sourceSets.selftest.output
+    destinationDirectory = layout.buildDirectory.dir('libs')
+}
+
+tasks.named('build') { dependsOn 'selftestJar', 'compilePaperJava' }
