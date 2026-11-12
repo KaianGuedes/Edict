@@ -1,0 +1,8 @@
+# PluginRules 0.1 config (flat booleans)
+rules:
+  # creeper
+  creeper_block_damage: false
+  enderman_block_theft: true
+  enter_end_portal: false
+  # void
+  safe_void_fall: true

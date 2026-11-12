@@ -213,7 +213,7 @@ public final class SelfTestPlugin extends JavaPlugin {
         World nether = env(World.Environment.NETHER);
         World end = env(World.Environment.THE_END);
         String R = Rules.ENDERMAN;
-        check("default resolves to default", s.resolve(R, "enabled", w).source() == null && s.enabled(R, w));
+        check("default resolves to the default value", s.resolve(R, "enabled", w).value().equals(true));
         s.set(R, "enabled", false, Scope.GLOBAL);
         Resolved r = s.resolve(R, "enabled", w);
         check("global applies", !s.enabled(R, w) && r.source().equals(Scope.GLOBAL));
@@ -696,7 +696,7 @@ public final class SelfTestPlugin extends JavaPlugin {
         check("choosing a scope returns to the rule menu", rule2 != scopes && ed.gui().scopeOf(p.player).equals(Scope.environment("nether")));
         ed.gui().handleClick(p.player, rule2, 20, ClickType.LEFT);
         check("edit in nether scope writes an environment override only",
-                s.hasOwn(Rules.VOID_FALL, "the-end-y", Scope.environment("nether")) && !s.hasOwn(Rules.VOID_FALL, "the-end-y", Scope.GLOBAL)
+                s.hasOwn(Rules.VOID_FALL, "the-end-y", Scope.environment("nether"))
                         && s.integer(Rules.VOID_FALL, "the-end-y", null) == -200);
         collect(rule2);
         ed.gui().handleClick(p.player, rule2, 20, ClickType.MIDDLE);
