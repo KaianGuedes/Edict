@@ -1,7 +1,7 @@
-# PluginRules messages (English). Colors use & codes. {placeholders} are filled in by the plugin.
+# Edict messages (English). Colors use & codes. {placeholders} are filled in by the plugin.
 log:
-  enabled: "PluginRules enabled successfully! (platform: {platform})"
-  disabled: "PluginRules disabled."
+  enabled: "Edict enabled successfully! (platform: {platform})"
+  disabled: "Edict disabled."
 err:
   bool: "&cThe value must be true or false."
   number: "&cThe value must be a whole number."
@@ -27,11 +27,11 @@ cmd:
   bad-scope: "&cUnknown scope '{scope}'. Use global, overworld, nether, the_end or world:<name>."
   rule-not-found: "&cRule '{rule}' not found."
   usage:
-    get: "&eUsage: /pluginrules get <rule> [parameter] [scope]"
-    set: "&eUsage: /pluginrules set <rule> [parameter] <value> [scope]"
-    reset: "&eUsage: /pluginrules reset <rule> [parameter] [scope]"
+    get: "&eUsage: /edict get <rule> [parameter] [scope]"
+    set: "&eUsage: /edict set <rule> [parameter] <value> [scope]"
+    reset: "&eUsage: /edict reset <rule> [parameter] [scope]"
   help:
-    header: "&e--- PluginRules ---"
+    header: "&e--- Edict ---"
     lines:
       - "&7/{label} &8- &fopen the GUI (players)"
       - "&7/{label} list [scope] &8- &fshow all rules"
@@ -132,16 +132,16 @@ param:
         - "&7the teleport. Off: start from rest."
 gui:
   title:
-    main: "PluginRules"
-    rule: "PluginRules: {rule}"
-    scope: "PluginRules: choose scope"
+    main: "Edict"
+    rule: "Edict: {rule}"
+    scope: "Edict: choose scope"
   close: "&cClose"
   back: "&eBack"
   current: "&7{scope}&7: {value}"
   default: "&7Default: {value}"
   range: "&7Range: &f{min} &7to &f{max}"
   per-scope: "&7Enabled by scope:"
-  per-scope.line: "&8  {scope}&8: {value}"
+  per-scope-line: "&8  {scope}&8: {value}"
   override:
     "yes": "&7Override in this scope: &ayes"
     "no": "&7Override in this scope: &8no (inherited)"
@@ -171,7 +171,7 @@ gui:
       - "&7then global."
       - "&eClick to change"
     header: "&bScope selector"
-    header.lore:
+    header-lore:
       - "&7Choose where your changes apply."
     select: "&eClick to select"
     selected: "&aSelected"

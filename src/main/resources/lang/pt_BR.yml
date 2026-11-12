@@ -1,7 +1,7 @@
-# Mensagens do PluginRules (Português do Brasil). Cores usam códigos &. {variáveis} são preenchidas pelo plugin.
+# Mensagens do Edict (Português do Brasil). Cores usam códigos &. {variáveis} são preenchidas pelo plugin.
 log:
-  enabled: "PluginRules ativado com sucesso! (plataforma: {platform})"
-  disabled: "PluginRules desativado."
+  enabled: "Edict ativado com sucesso! (plataforma: {platform})"
+  disabled: "Edict desativado."
 err:
   bool: "&cO valor deve ser 'true' ou 'false'."
   number: "&cO valor deve ser um número inteiro."
@@ -27,11 +27,11 @@ cmd:
   bad-scope: "&cEscopo '{scope}' desconhecido. Use global, overworld, nether, the_end ou world:<nome>."
   rule-not-found: "&cRegra '{rule}' não encontrada."
   usage:
-    get: "&eUso: /pluginrules get <regra> [parâmetro] [escopo]"
-    set: "&eUso: /pluginrules set <regra> [parâmetro] <valor> [escopo]"
-    reset: "&eUso: /pluginrules reset <regra> [parâmetro] [escopo]"
+    get: "&eUso: /edict get <regra> [parâmetro] [escopo]"
+    set: "&eUso: /edict set <regra> [parâmetro] <valor> [escopo]"
+    reset: "&eUso: /edict reset <regra> [parâmetro] [escopo]"
   help:
-    header: "&e--- PluginRules ---"
+    header: "&e--- Edict ---"
     lines:
       - "&7/{label} &8- &fabre a interface (jogadores)"
       - "&7/{label} list [escopo] &8- &fmostra todas as regras"
@@ -132,16 +132,16 @@ param:
         - "&7após o teleporte. Desligado: parte do zero."
 gui:
   title:
-    main: "PluginRules"
-    rule: "PluginRules: {rule}"
-    scope: "PluginRules: escolher escopo"
+    main: "Edict"
+    rule: "Edict: {rule}"
+    scope: "Edict: escolher escopo"
   close: "&cFechar"
   back: "&eVoltar"
   current: "&7{scope}&7: {value}"
   default: "&7Padrão: {value}"
   range: "&7Faixa: &f{min} &7a &f{max}"
   per-scope: "&7Ativada por escopo:"
-  per-scope.line: "&8  {scope}&8: {value}"
+  per-scope-line: "&8  {scope}&8: {value}"
   override:
     "yes": "&7Substituição neste escopo: &asim"
     "no": "&7Substituição neste escopo: &8não (herdado)"
@@ -171,7 +171,7 @@ gui:
       - "&7depois global."
       - "&eClique para mudar"
     header: "&bSeletor de escopo"
-    header.lore:
+    header-lore:
       - "&7Escolha onde suas mudanças valem."
     select: "&eClique para selecionar"
     selected: "&aSelecionado"

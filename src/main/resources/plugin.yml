@@ -1,16 +1,26 @@
-name: PluginRules
+name: ${name}
 version: '${version}'
-main: dev.war.pluginRules.PluginRules
+main: dev.war.edict.Edict
 api-version: '1.20'
 folia-supported: true
 description: Per-world and per-dimension gameplay rules with a chest GUI.
 authors: [KaianGuedes]
 commands:
-  pluginrules:
+  edict:
     description: Manage the server rules (GUI, list, get, set, reset, reload).
     usage: /<command> [gui|list|get|set|reset|reload|help]
-    aliases: [prules, pr]
+    aliases: [ed, pluginrules, prules, pr]
 permissions:
-  pluginrules.admin:
-    description: Allows using and changing PluginRules.
+  edict.*:
+    description: All Edict permissions.
     default: op
+    children:
+      edict.admin: true
+  edict.admin:
+    description: Allows using and changing Edict.
+    default: op
+  pluginrules.admin:
+    description: Legacy (PluginRules 0.1) permission, grants the same as edict.admin.
+    default: op
+    children:
+      edict.admin: true

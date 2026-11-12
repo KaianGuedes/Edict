@@ -1,10 +1,10 @@
-# PluginRules 0.2
+# Edict 0.2
 #
 # Every rule has parameters. A value is resolved per parameter in this order:
 #   1. worlds.<world name>.<rule>.<parameter>
 #   2. environments.<overworld|nether|the_end>.<rule>.<parameter>
 #   3. rules.<rule>.<parameter>   (global default)
-# You can edit this file, use /pluginrules set, or use the GUI (/pluginrules). /pluginrules reload re-reads it.
+# You can edit this file, use /edict set, or use the GUI (/edict). /edict reload re-reads it.
 
 config-version: 2
 

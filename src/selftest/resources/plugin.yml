@@ -1,0 +1,7 @@
+name: EdictSelfTest
+version: '0.2'
+main: dev.war.edict.selftest.SelfTestPlugin
+api-version: '1.20'
+depend: [Edict]
+folia-supported: false
+description: Test harness for Edict, only active with -Dedict.selftest=<report file>.
